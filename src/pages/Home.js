@@ -1,23 +1,16 @@
-import { useState } from 'react';
 import ExperienceCard from '../components/ExperienceCard';
 import BucketList from '../components/BucketList';
 import SearchBar from '../components/SearchBar';
+import { useState } from 'react';
 
-function Home() {
-    const [bucketList, setBucketList] = useState([]);
+function Home({ bucketList, handleAdd, clearList }) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const experiences = [
         { title: "Central Park", description: "A beautiful park in NYC" },
         { title: "Brooklyn Bridge", description: "Amazing skyline views" },
         { title: "Times Square", description: "Bright lights and energy" }
-        ];
-
-    const handleAdd = (place) => {
-        if (!bucketList.includes(place)) {
-            setBucketList([...bucketList, place]);
-        }
-    };
+    ];
 
     return (
         <div>
@@ -26,20 +19,25 @@ function Home() {
             <h3>Experiences</h3>
 
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            {experiences
-                .filter((exp) =>
-                    exp.title.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .map((exp, index) => (
-                    <ExperienceCard
-                        key={index}
-                        title={exp.title}
-                        description={exp.description}
-                        onAdd={handleAdd}
-                    />
-                ))}
+
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {experiences
+                    .filter((exp) =>
+                        exp.title.toLowerCase().includes(searchTerm.toLowerCase())
+                    )
+                    .map((exp, index) => (
+                        <ExperienceCard
+                            key={index}
+                            title={exp.title}
+                            description={exp.description}
+                            onAdd={handleAdd}
+                        />
+                    ))}
+            </div>
 
             <BucketList items={bucketList} />
+            <button onClick={clearList}>Clear List</button>
+
         </div>
     );
 }
