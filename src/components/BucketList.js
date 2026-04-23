@@ -1,14 +1,25 @@
-function BucketList({ items }) {
+export default BucketList;
+
+function BucketList({ items, removeItem }) {
     return (
         <div>
-            <h3>My Bucket List</h3>
-            <ul>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
                 {items.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li 
+                        key={index}
+                        style={{ 
+                            margin: '10px 0',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '10px'
+                        }}
+                    >
+                        {item}
+                        <button onClick={() => removeItem(item)}>❌</button>
+                    </li>
                 ))}
             </ul>
         </div>
     );
 }
-
-export default BucketList;

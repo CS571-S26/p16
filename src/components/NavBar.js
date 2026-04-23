@@ -8,6 +8,7 @@ function NavigationBar() {
             <Nav>
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link as={Link} to="/neighborhoods">Neighborhoods</Nav.Link>
+                <Nav.Link as={Link} to="/my-list">My List</Nav.Link>
             </Nav>
         </Navbar>
     );
