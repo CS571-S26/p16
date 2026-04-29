@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar';
 import { useState } from 'react';
 import Header from '../components/Header';
 import { Container } from 'react-bootstrap';
+import HeroSection from '../components/HeroSection';import HeroSection from '../components/HeroSection';
 
 function Home({ bucketList, handleAdd, clearList, removeItem }) {
     const [searchTerm, setSearchTerm] = useState('');

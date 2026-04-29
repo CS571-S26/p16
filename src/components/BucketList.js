@@ -1,25 +1,14 @@
-export default BucketList;
+import BucketListItem from './BucketListItem';
+import EmptyState from './EmptyState';
 
 function BucketList({ items, removeItem }) {
+    if (items.length === 0) return <EmptyState />;
     return (
-        <div>
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-                {items.map((item, index) => (
-                    <li 
-                        key={index}
-                        style={{ 
-                            margin: '10px 0',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            gap: '10px'
-                        }}
-                    >
-                        {item}
-                        <button onClick={() => removeItem(item)}>❌</button>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <ul style={{ listStyle: 'none', padding: 0 }}>
+            {items.map((item, index) => (
+                <BucketListItem key={index} item={item} removeItem={removeItem} />
+            ))}
+        </ul>
     );
 }
+export default BucketList;

@@ -37,7 +37,7 @@ function App() {
     <Router>
       <div className="App">   {/* ✅ ADD THIS WRAPPER */}
 
-        <NavigationBar />
+      <NavigationBar bucketListCount={bucketList.length} />
 
         <div className="main-content">   {/* ✅ ADD THIS */}
           <Routes>
