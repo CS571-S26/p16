@@ -16,10 +16,12 @@ function NavigationBar({ bucketListCount }) {
                             My List{' '}
                             {bucketListCount > 0 && <Badge bg="warning" text="dark" pill>{bucketListCount}</Badge>}
                         </Nav.Link>
+                        <Nav.Link as={Link} to="/plan-trip">Plan Trip</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
     );
 }
+
 export default NavigationBar;
