@@ -57,7 +57,7 @@ function App() {
         <NavigationBar bucketListCount={bucketList.length} />
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Home bucketList={bucketList} handleAdd={handleAdd} clearList={clearList} removeItem={removeItem} />} />
+            <Route path="/" element={<Home bucketList={bucketList} handleAdd={handleAdd} clearList={clearList} removeItem={removeItem} visited={visited} toggleVisited={toggleVisited} />} />
             <Route path="/neighborhoods" element={<Neighborhoods bucketList={bucketList} handleAdd={handleAdd} clearList={clearList} removeItem={removeItem} />} />
             <Route path="/my-list" element={<MyList bucketList={bucketList} clearList={clearList} removeItem={removeItem} visited={visited} toggleVisited={toggleVisited} />} />
             <Route path="/plan-trip" element={<PlanTrip />} />

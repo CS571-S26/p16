@@ -1,48 +1,55 @@
-import ExperienceCard from '../components/ExperienceCard';
-import BucketList from '../components/BucketList';
+import NeighborhoodCard from '../components/NeighborhoodCard';
 import Header from '../components/Header';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
-function Neighborhoods({ bucketList, handleAdd, clearList, removeItem }) {
+const NEIGHBORHOODS = [
+    {
+        name: "Manhattan",
+        emoji: "🏙️",
+        description: "The iconic heart of NYC — skyscrapers, world-class museums, and the energy of Times Square.",
+        highlights: ["Central Park", "The Met", "Fifth Avenue"],
+        vibe: "Iconic & Electric"
+    },
+    {
+        name: "Brooklyn",
+        emoji: "🌉",
+        description: "Trendy neighborhoods, artisan food markets, and stunning views of the Manhattan skyline.",
+        highlights: ["Brooklyn Bridge", "DUMBO", "Prospect Park"],
+        vibe: "Hip & Creative"
+    },
+    {
+        name: "Queens",
+        emoji: "🌍",
+        description: "The most ethnically diverse borough — incredible food from every corner of the world.",
+        highlights: ["Flushing Meadows", "Jackson Heights", "Astoria"],
+        vibe: "Diverse & Delicious"
+    }
+];
+
+function Neighborhoods({ bucketList, handleAdd }) {
     return (
         <div>
-            <Header 
-                title="Neighborhoods" 
+            <Header
+                title="Neighborhoods"
                 subtitle="Discover different areas of New York City"
             />
 
-            <Container style={{ maxWidth: '1200px', marginTop: '30px' }}>
-                <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'center',
-                    gap: '25px'
-                }}>
-                    <ExperienceCard
-                        title="Manhattan"
-                        description="The heart of NYC with iconic landmarks."
-                        onAdd={handleAdd}
-                    />
-
-                    <ExperienceCard
-                        title="Brooklyn"
-                        description="Trendy neighborhoods and great food."
-                        onAdd={handleAdd}
-                    />
-
-                    <ExperienceCard
-                        title="Queens"
-                        description="Diverse culture and amazing cuisine."
-                        onAdd={handleAdd}
-                    />
-                </div>
-
-                <div style={{ textAlign: 'center', marginTop: '30px' }}>
-                    <BucketList items={bucketList} removeItem={removeItem} />
-
-                    <button className="btn btn-danger btn-lg mt-3" onClick={clearList}>
-                        Clear List
-                    </button>
-                </div>
+            <Container style={{ maxWidth: '1200px', padding: '40px 20px' }}>
+                <Row xs={1} md={3} className="g-4">
+                    {NEIGHBORHOODS.map((n) => (
+                        <Col key={n.name}>
+                            <NeighborhoodCard
+                                name={n.name}
+                                emoji={n.emoji}
+                                description={n.description}
+                                highlights={n.highlights}
+                                vibe={n.vibe}
+                                onAdd={handleAdd}
+                                isAdded={bucketList.includes(n.name)}
+                            />
+                        </Col>
+                    ))}
+                </Row>
             </Container>
         </div>
     );
